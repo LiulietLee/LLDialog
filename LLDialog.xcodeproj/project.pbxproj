@@ -14,6 +14,7 @@
 		4FD12E791C525A1D00224176 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD12E771C525A1D00224176 /* LaunchScreen.storyboard */; };
 		4FD12E841C525A1D00224176 /* LLDialogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD12E831C525A1D00224176 /* LLDialogTests.swift */; };
 		4FD12E8F1C525A1D00224176 /* LLDialogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD12E8E1C525A1D00224176 /* LLDialogUITests.swift */; };
+		4FD12E9F1C525A9500224176 /* LLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD12E9E1C525A9500224176 /* LLDialog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		4FD12E8A1C525A1D00224176 /* LLDialogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDialogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD12E8E1C525A1D00224176 /* LLDialogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDialogUITests.swift; sourceTree = "<group>"; };
 		4FD12E901C525A1D00224176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FD12E9E1C525A9500224176 /* LLDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDialog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +99,10 @@
 		4FD12E6D1C525A1C00224176 /* LLDialog */ = {
 			isa = PBXGroup;
 			children = (
-				4FD12E6E1C525A1D00224176 /* AppDelegate.swift */,
+				4FD12E9D1C525A7100224176 /* Source */,
+				4FD12E9C1C525A5B00224176 /* Supporting */,
 				4FD12E701C525A1D00224176 /* ViewController.swift */,
 				4FD12E721C525A1D00224176 /* Main.storyboard */,
-				4FD12E751C525A1D00224176 /* Assets.xcassets */,
-				4FD12E771C525A1D00224176 /* LaunchScreen.storyboard */,
-				4FD12E7A1C525A1D00224176 /* Info.plist */,
 			);
 			path = LLDialog;
 			sourceTree = "<group>";
@@ -123,6 +123,25 @@
 				4FD12E901C525A1D00224176 /* Info.plist */,
 			);
 			path = LLDialogUITests;
+			sourceTree = "<group>";
+		};
+		4FD12E9C1C525A5B00224176 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				4FD12E6E1C525A1D00224176 /* AppDelegate.swift */,
+				4FD12E751C525A1D00224176 /* Assets.xcassets */,
+				4FD12E771C525A1D00224176 /* LaunchScreen.storyboard */,
+				4FD12E7A1C525A1D00224176 /* Info.plist */,
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
+		4FD12E9D1C525A7100224176 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4FD12E9E1C525A9500224176 /* LLDialog.swift */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FD12E711C525A1D00224176 /* ViewController.swift in Sources */,
+				4FD12E9F1C525A9500224176 /* LLDialog.swift in Sources */,
 				4FD12E6F1C525A1D00224176 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

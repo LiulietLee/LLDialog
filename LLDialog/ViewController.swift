@@ -10,16 +10,33 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func tappedYesButton() {
+        label.text = "Accepted"
     }
-
-
+    
+    @IBAction func tappedNoButton() {
+        label.text = "Did not accept"
+    }
+    
+    @IBAction func buttonTapped() {
+        let dialog = LLDialog()
+        
+        dialog.title = "Use Google's location service?"
+        
+        dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
+        
+        dialog.setYesButton("AGREE", target: "tappedYesButton")
+        
+        dialog.setNoButton("DISAGREE", target: "tappedNoButton")
+        
+        dialog.refreshUI()
+        
+        self.view.addSubview(dialog)
+    }
 }
 
