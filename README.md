@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LLDialog
 Material design dialog for iOS written in Swift.
 
@@ -35,3 +36,6 @@ Except title, content and yes/no button, DO NOT set other attributes.
 ## TO DO
 * The animation after tapping the button.
 * The dark shadow around dialog.
+=======
+# LLDialog
+>>>>>>> origin/master
