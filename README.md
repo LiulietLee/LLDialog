@@ -3,7 +3,7 @@ Material design dialog for iOS written in Swift.
 
 
 
-![](https://cloud.githubusercontent.com/assets/9763162/12615088/9ea0e748-c53e-11e5-8910-b40bbb613829.png)
+![](https://cloud.githubusercontent.com/assets/9763162/12781455/6a1b05c8-caaf-11e5-9d04-0ed339aa56f7.png)
 
 
 ## Installation
