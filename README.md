@@ -10,6 +10,8 @@ Material design dialog for iOS written in Swift.
 Just move Source/LLDialog.swift to your project.
 
 ## Usage
+You can see a sample example by downloading this project.
+
 ```
 let dialog = LLDialog()
   
