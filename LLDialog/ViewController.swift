@@ -15,24 +15,27 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func tappedYesButton() {
+    @objc private func tappedYesButton() {
+        
         label.text = "Accepted"
     }
     
-    @IBAction func tappedNoButton() {
+    @objc private func tappedNoButton() {
+        
         label.text = "Did not accept"
     }
     
     @IBAction func buttonTapped() {
+        
         let dialog = LLDialog()
         
         dialog.title = "Use Google's location service?"
         
         dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
-        dialog.setYesButton("AGREE", target: "tappedYesButton")
+        dialog.setYesButton(self, title: "AGREE", action: "tappedYesButton")
         
-        dialog.setNoButton("DISAGREE", target: "tappedNoButton")
+        dialog.setNoButton(self, title: "DISAGREE", action: "tappedNoButton")
         
         dialog.refreshUI()
         

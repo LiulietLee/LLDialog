@@ -502,6 +502,7 @@
 				4FD12E951C525A1D00224176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FD12E961C525A1D00224176 /* Build configuration list for PBXNativeTarget "LLDialogTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +511,7 @@
 				4FD12E981C525A1D00224176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FD12E991C525A1D00224176 /* Build configuration list for PBXNativeTarget "LLDialogUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +520,7 @@
 				4FD12E9B1C525A1D00224176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
