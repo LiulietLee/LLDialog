@@ -22,8 +22,8 @@ dialog.title = "Use Google's location service?"
 dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
 
 // Set the buttons
-dialog.setYesButton("AGREE", target: "your function's name")
-dialog.setNoButton("DISAGREE", target: "your function's name")
+dialog.setYesButton(self, title: "AGREE", action: "FUNCTION_NAME")
+dialog.setNoButton(self, title: "DISAGREE", action: "FUNCTION_NAME")
 
 // Don't forget this line.
 dialog.refreshUI()
