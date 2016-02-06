@@ -33,7 +33,10 @@ class LLDialog: UIView {
         cover.frame = CGRect(origin: CGPointZero, size: frame)
         cover.backgroundColor = UIColor.blackColor()
         
-        self.superview!.addSubview(cover)
+        let currentWindow = UIApplication.sharedApplication().keyWindow
+        currentWindow?.addSubview(cover)
+        currentWindow?.addSubview(self)
+        
         self.superview!.bringSubviewToFront(self)
         self.alpha = 0.0
 
