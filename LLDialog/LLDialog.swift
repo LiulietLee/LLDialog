@@ -104,24 +104,27 @@ class LLDialog: UIView {
     /// Place all controls to correct position.
     private func placeControls() {
         
-        titleLabel.frame = CGRect(x: 24, y: 0, width: 202, height: CGFloat.max)
+        let frame = UIScreen.mainScreen().bounds.size
+        let width = frame.width * (7 / 9)
+        
+        titleLabel.frame = CGRect(x: 24, y: 0, width: width - 48, height: CGFloat.max)
         titleLabel.sizeToFit()
         titleLabel.frame.origin.y += 24
         let titleLabelHeight = titleLabel.frame.height
         
-        contentLabel.frame = CGRect(x: 24, y: 0, width: 202, height: CGFloat.max)
+        contentLabel.frame = CGRect(x: 24, y: 0, width: width - 48, height: CGFloat.max)
         contentLabel.sizeToFit()
         contentLabel.frame.origin.y += 24 + titleLabelHeight + 20
         let contentLabelHeight = contentLabel.frame.height
         
-        let viewWidth = 250
+        let viewWidth = width
         let viewHeight = 24 + titleLabelHeight + 20 + contentLabelHeight + 32 + 36 + 8
         let viewSize = CGSize(width: CGFloat(viewWidth), height: viewHeight)
         
         let screenSize = UIScreen.mainScreen().bounds.size
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        let viewPoint = CGPoint(x: screenWidth / 2 - 125, y: screenHeight / 2 - CGFloat(viewHeight) / 2)
+        let viewPoint = CGPoint(x: (1 / 9) * screenWidth, y: screenHeight / 2 - CGFloat(viewHeight) / 2)
         self.frame = CGRect(origin: viewPoint, size: viewSize)
         self.backgroundColor = UIColor.whiteColor()
         
