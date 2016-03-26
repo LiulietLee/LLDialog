@@ -86,14 +86,14 @@ class LLDialog: UIView {
         noButton.titleLabel!.font = UIFont(name: noButton.titleLabel!.font.fontName, size: 16)
         noButton.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
         noButton.sizeToFit()
-        noButton.addTarget(self, action: "disapper", forControlEvents: .TouchUpInside)
+        noButton.addTarget(self, action: #selector(LLDialog.disapper), forControlEvents: .TouchUpInside)
         
         yesButton.setTitle(yesText, forState: .Normal)
         yesButton.setTitleColor(UIColor(red:0.07, green:0.58, blue:0.96, alpha:1), forState: .Normal)
         yesButton.titleLabel!.font = UIFont(name: yesButton.titleLabel!.font.fontName, size: 16)
         yesButton.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
         yesButton.sizeToFit()
-        yesButton.addTarget(self, action: "disapper", forControlEvents: .TouchUpInside)
+        yesButton.addTarget(self, action: #selector(LLDialog.disapper), forControlEvents: .TouchUpInside)
         
         addSubview(titleLabel)
         addSubview(contentLabel)
