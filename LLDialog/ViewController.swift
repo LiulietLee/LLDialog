@@ -16,12 +16,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @objc private func tappedYesButton() {
+    @objc private func tappedPositiveButton() {
         
         label.text = "Accepted"
     }
     
-    @objc private func tappedNoButton() {
+    @objc private func tappedNegativeButton() {
         
         label.text = "Did not accept"
     }
@@ -34,13 +34,11 @@ class ViewController: UIViewController {
         
         dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
-        dialog.setYesButton(self, title: "AGREE", action: "tappedYesButton")
+        dialog.setPositiveButton(self, title: "AGREE", action: #selector(tappedPositiveButton))
+        dialog.setNegativeButton(self, title: "DISAGREE", action: #selector(tappedNegativeButton))
         
-        dialog.setNoButton(self, title: "DISAGREE", action: "tappedNoButton")
+        dialog.show()
         
-        dialog.refreshUI()
-        
-        self.view.addSubview(dialog)
     }
 }
 
