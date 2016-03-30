@@ -18,15 +18,15 @@ let dialog = LLDialog()
 // Set title. (Not required)        
 dialog.title = "Use Google's location service?"
         
-// Set content. (Not required)
-dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
+// Set message. (Not required)
+dialog.message = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
 // Set the buttons.
-// Title for positive button is required
-dialog.setPositiveButton(self, title: "AGREE", action: #selector(tappedPositiveButton))
-dialog.setNegativeButton(self, title: "DISAGREE", action: #selector(tappedNegativeButton))
- 
-// At last, show the dialog (in your view).       
+// Title for positive button is required. If set it to be “”, it will automatically change to “OK”
+dialog.setPositiveButton(title: "AGREE", target: self, action: #selector(<#tappedPositiveButton#>))
+dialog.setNegativeButton(title: "DISAGREE", target: self,  action: #selector(<#tappedNegativeButton#>))
+
+// At last, show the dialog.       
 dialog.show()
 ```
 

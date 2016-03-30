@@ -12,10 +12,6 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     @objc private func tappedPositiveButton() {
         
         label.text = "Accepted"
@@ -32,10 +28,10 @@ class ViewController: UIViewController {
         
         dialog.title = "Use Google's location service?"
         
-        dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
+        dialog.message = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
-        dialog.setPositiveButton(self, title: "AGREE", action: #selector(tappedPositiveButton))
-        dialog.setNegativeButton(self, title: "DISAGREE", action: #selector(tappedNegativeButton))
+        dialog.setPositiveButton(title: "AGREE", target: self, action: #selector(tappedPositiveButton))
+        dialog.setNegativeButton(title: "DISAGREE", target: self,  action: #selector(tappedNegativeButton))
         
         dialog.show()
         
