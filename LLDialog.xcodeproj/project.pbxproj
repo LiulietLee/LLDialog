@@ -12,27 +12,8 @@
 		4FD12E741C525A1D00224176 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD12E721C525A1D00224176 /* Main.storyboard */; };
 		4FD12E761C525A1D00224176 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FD12E751C525A1D00224176 /* Assets.xcassets */; };
 		4FD12E791C525A1D00224176 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD12E771C525A1D00224176 /* LaunchScreen.storyboard */; };
-		4FD12E841C525A1D00224176 /* LLDialogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD12E831C525A1D00224176 /* LLDialogTests.swift */; };
-		4FD12E8F1C525A1D00224176 /* LLDialogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD12E8E1C525A1D00224176 /* LLDialogUITests.swift */; };
-		4FD12E9F1C525A9500224176 /* LLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD12E9E1C525A9500224176 /* LLDialog.swift */; };
+		52CBD64B1CAC752100A2A4ED /* LLDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CBD64A1CAC752100A2A4ED /* LLDialog.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4FD12E801C525A1D00224176 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4FD12E631C525A1C00224176 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4FD12E6A1C525A1C00224176;
-			remoteInfo = LLDialog;
-		};
-		4FD12E8B1C525A1D00224176 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4FD12E631C525A1C00224176 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4FD12E6A1C525A1C00224176;
-			remoteInfo = LLDialog;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4FD12E6B1C525A1C00224176 /* LLDialog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDialog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,31 +23,11 @@
 		4FD12E751C525A1D00224176 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FD12E781C525A1D00224176 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FD12E7A1C525A1D00224176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FD12E7F1C525A1D00224176 /* LLDialogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDialogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FD12E831C525A1D00224176 /* LLDialogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDialogTests.swift; sourceTree = "<group>"; };
-		4FD12E851C525A1D00224176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FD12E8A1C525A1D00224176 /* LLDialogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDialogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FD12E8E1C525A1D00224176 /* LLDialogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDialogUITests.swift; sourceTree = "<group>"; };
-		4FD12E901C525A1D00224176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FD12E9E1C525A9500224176 /* LLDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDialog.swift; sourceTree = "<group>"; };
+		52CBD64A1CAC752100A2A4ED /* LLDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLDialog.swift; path = Source/LLDialog.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4FD12E681C525A1C00224176 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4FD12E7C1C525A1D00224176 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4FD12E871C525A1D00224176 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,8 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				4FD12E6D1C525A1C00224176 /* LLDialog */,
-				4FD12E821C525A1D00224176 /* LLDialogTests */,
-				4FD12E8D1C525A1D00224176 /* LLDialogUITests */,
 				4FD12E6C1C525A1C00224176 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,8 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				4FD12E6B1C525A1C00224176 /* LLDialog.app */,
-				4FD12E7F1C525A1D00224176 /* LLDialogTests.xctest */,
-				4FD12E8A1C525A1D00224176 /* LLDialogUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,24 +62,6 @@
 				4FD12E721C525A1D00224176 /* Main.storyboard */,
 			);
 			path = LLDialog;
-			sourceTree = "<group>";
-		};
-		4FD12E821C525A1D00224176 /* LLDialogTests */ = {
-			isa = PBXGroup;
-			children = (
-				4FD12E831C525A1D00224176 /* LLDialogTests.swift */,
-				4FD12E851C525A1D00224176 /* Info.plist */,
-			);
-			path = LLDialogTests;
-			sourceTree = "<group>";
-		};
-		4FD12E8D1C525A1D00224176 /* LLDialogUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4FD12E8E1C525A1D00224176 /* LLDialogUITests.swift */,
-				4FD12E901C525A1D00224176 /* Info.plist */,
-			);
-			path = LLDialogUITests;
 			sourceTree = "<group>";
 		};
 		4FD12E9C1C525A5B00224176 /* Supporting */ = {
@@ -139,7 +78,7 @@
 		4FD12E9D1C525A7100224176 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				4FD12E9E1C525A9500224176 /* LLDialog.swift */,
+				52CBD64A1CAC752100A2A4ED /* LLDialog.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -154,6 +93,7 @@
 				4FD12E671C525A1C00224176 /* Sources */,
 				4FD12E681C525A1C00224176 /* Frameworks */,
 				4FD12E691C525A1C00224176 /* Resources */,
+				52CBD64C1CAC770500A2A4ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -163,42 +103,6 @@
 			productName = LLDialog;
 			productReference = 4FD12E6B1C525A1C00224176 /* LLDialog.app */;
 			productType = "com.apple.product-type.application";
-		};
-		4FD12E7E1C525A1D00224176 /* LLDialogTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4FD12E961C525A1D00224176 /* Build configuration list for PBXNativeTarget "LLDialogTests" */;
-			buildPhases = (
-				4FD12E7B1C525A1D00224176 /* Sources */,
-				4FD12E7C1C525A1D00224176 /* Frameworks */,
-				4FD12E7D1C525A1D00224176 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4FD12E811C525A1D00224176 /* PBXTargetDependency */,
-			);
-			name = LLDialogTests;
-			productName = LLDialogTests;
-			productReference = 4FD12E7F1C525A1D00224176 /* LLDialogTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		4FD12E891C525A1D00224176 /* LLDialogUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4FD12E991C525A1D00224176 /* Build configuration list for PBXNativeTarget "LLDialogUITests" */;
-			buildPhases = (
-				4FD12E861C525A1D00224176 /* Sources */,
-				4FD12E871C525A1D00224176 /* Frameworks */,
-				4FD12E881C525A1D00224176 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4FD12E8C1C525A1D00224176 /* PBXTargetDependency */,
-			);
-			name = LLDialogUITests;
-			productName = LLDialogUITests;
-			productReference = 4FD12E8A1C525A1D00224176 /* LLDialogUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -212,14 +116,6 @@
 				TargetAttributes = {
 					4FD12E6A1C525A1C00224176 = {
 						CreatedOnToolsVersion = 7.2;
-					};
-					4FD12E7E1C525A1D00224176 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 4FD12E6A1C525A1C00224176;
-					};
-					4FD12E891C525A1D00224176 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 4FD12E6A1C525A1C00224176;
 					};
 				};
 			};
@@ -237,8 +133,6 @@
 			projectRoot = "";
 			targets = (
 				4FD12E6A1C525A1C00224176 /* LLDialog */,
-				4FD12E7E1C525A1D00224176 /* LLDialogTests */,
-				4FD12E891C525A1D00224176 /* LLDialogUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,21 +148,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4FD12E7D1C525A1D00224176 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4FD12E881C525A1D00224176 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52CBD64C1CAC770500A2A4ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4FD12E671C525A1C00224176 /* Sources */ = {
@@ -276,41 +172,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FD12E711C525A1D00224176 /* ViewController.swift in Sources */,
-				4FD12E9F1C525A9500224176 /* LLDialog.swift in Sources */,
+				52CBD64B1CAC752100A2A4ED /* LLDialog.swift in Sources */,
 				4FD12E6F1C525A1D00224176 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4FD12E7B1C525A1D00224176 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4FD12E841C525A1D00224176 /* LLDialogTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4FD12E861C525A1D00224176 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4FD12E8F1C525A1D00224176 /* LLDialogUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4FD12E811C525A1D00224176 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4FD12E6A1C525A1C00224176 /* LLDialog */;
-			targetProxy = 4FD12E801C525A1D00224176 /* PBXContainerItemProxy */;
-		};
-		4FD12E8C1C525A1D00224176 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4FD12E6A1C525A1C00224176 /* LLDialog */;
-			targetProxy = 4FD12E8B1C525A1D00224176 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4FD12E721C525A1D00224176 /* Main.storyboard */ = {
@@ -439,54 +306,6 @@
 			};
 			name = Release;
 		};
-		4FD12E971C525A1D00224176 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = LLDialogTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Future-Code-Institute.LLDialogTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LLDialog.app/LLDialog";
-			};
-			name = Debug;
-		};
-		4FD12E981C525A1D00224176 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = LLDialogTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Future-Code-Institute.LLDialogTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LLDialog.app/LLDialog";
-			};
-			name = Release;
-		};
-		4FD12E9A1C525A1D00224176 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = LLDialogUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Future-Code-Institute.LLDialogUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = LLDialog;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		4FD12E9B1C525A1D00224176 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = LLDialogUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Future-Code-Institute.LLDialogUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = LLDialog;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -504,24 +323,6 @@
 			buildConfigurations = (
 				4FD12E941C525A1D00224176 /* Debug */,
 				4FD12E951C525A1D00224176 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4FD12E961C525A1D00224176 /* Build configuration list for PBXNativeTarget "LLDialogTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4FD12E971C525A1D00224176 /* Debug */,
-				4FD12E981C525A1D00224176 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4FD12E991C525A1D00224176 /* Build configuration list for PBXNativeTarget "LLDialogUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4FD12E9A1C525A1D00224176 /* Debug */,
-				4FD12E9B1C525A1D00224176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
