@@ -22,7 +22,7 @@ dialog.title = "Use Google's location service?"
 dialog.message = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
 // Set the buttons.
-// Title for positive button is required. If set it to be “”, it will automatically change to “OK”
+// Title for positive button is required. If set it to be a "blank" string, it will automatically change to “OK”
 dialog.setPositiveButton(title: "AGREE", target: self, action: #selector(<#tappedPositiveButton#>))
 dialog.setNegativeButton(title: "DISAGREE", target: self,  action: #selector(<#tappedNegativeButton#>))
 
