@@ -12,17 +12,19 @@ class LLDialog: UIView {
     
     // MARK: Properties
     
-    var title = "Title"
-    var content = "This is content."
+    /// Title of LLDialog
+    var title: String? = "Title"
+    /// Message of LLDialog
+    var message: String? = "This is the message."
     
-    private var noButton = UIButton()
-    private var yesButton = UIButton()
+    private var negativeButton = UIButton()
+    private var positiveButton = UIButton()
     private var titleLabel = UILabel()
     private var contentLabel = UILabel()
     private var cover = UIView()
-    private var noText = "DISAGREE"
-    private var yesText = "AGREE"
-
+    private var negativeText: String?
+    private var positiveText = "OK"
+    
     // MARK: View did load
     
     override func drawRect(rect: CGRect) {
@@ -39,7 +41,7 @@ class LLDialog: UIView {
         
         self.superview!.bringSubviewToFront(self)
         self.alpha = 0.0
-
+        
         UIView.animateWithDuration(0.3) { () -> Void in
             self.cover.alpha = 0.6
         }
@@ -50,7 +52,6 @@ class LLDialog: UIView {
     
     /// Add shadow to the view.
     override func layoutSubviews() {
-        
         layer.shadowOpacity = 0.5
         layer.masksToBounds = false
         layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -60,14 +61,24 @@ class LLDialog: UIView {
     
     // MARK: Configure controls
     
-    /// Refresh all controls.
-    func refreshUI() {
-        
+    ///
+    /**
+     Refresh all controls, show dialog, add observer to handle rotation
+     
+     - Parameters:
+     - inView: The view that will become the superview of LLDialog. Set to be `keyWindow` by default.
+     */
+    func show(inView: UIView? = UIApplication.sharedApplication().keyWindow){
+        contentMode = .Redraw
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LLDialog.placeControls), name: UIDeviceOrientationDidChangeNotification, object: nil)
         addControls()
         placeControls()
+        if let view = inView{
+            view.addSubview(self)
+        }
     }
     
-    /// Configure controls and add them to the view.
+    /// Configure controls and add them to the view
     private func addControls() {
         
         titleLabel.text = title
@@ -75,34 +86,34 @@ class LLDialog: UIView {
         titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         titleLabel.numberOfLines = 0
         
-        contentLabel.text = content
+        contentLabel.text = message
         contentLabel.font = UIFont(name: contentLabel.font.fontName, size: 16)
         contentLabel.textColor = UIColor(red:0.49, green:0.49, blue:0.49, alpha:1)
         contentLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         contentLabel.numberOfLines = 0
         
-        noButton.setTitle(noText, forState: .Normal)
-        noButton.setTitleColor(UIColor(red:0.07, green:0.58, blue:0.96, alpha:1), forState: .Normal)
-        noButton.titleLabel!.font = UIFont(name: noButton.titleLabel!.font.fontName, size: 16)
-        noButton.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
-        noButton.sizeToFit()
-        noButton.addTarget(self, action: #selector(LLDialog.disapper), forControlEvents: .TouchUpInside)
+        negativeButton.setTitle(negativeText, forState: .Normal)
+        negativeButton.setTitleColor(UIColor(red:0.07, green:0.58, blue:0.96, alpha:1), forState: .Normal)
+        negativeButton.titleLabel!.font = UIFont(name: negativeButton.titleLabel!.font.fontName, size: 16)
+        negativeButton.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
+        negativeButton.sizeToFit()
+        negativeButton.addTarget(self, action: #selector(LLDialog.disappear), forControlEvents: .TouchUpInside)
         
-        yesButton.setTitle(yesText, forState: .Normal)
-        yesButton.setTitleColor(UIColor(red:0.07, green:0.58, blue:0.96, alpha:1), forState: .Normal)
-        yesButton.titleLabel!.font = UIFont(name: yesButton.titleLabel!.font.fontName, size: 16)
-        yesButton.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
-        yesButton.sizeToFit()
-        yesButton.addTarget(self, action: #selector(LLDialog.disapper), forControlEvents: .TouchUpInside)
+        positiveButton.setTitle(positiveText, forState: .Normal)
+        positiveButton.setTitleColor(UIColor(red:0.07, green:0.58, blue:0.96, alpha:1), forState: .Normal)
+        positiveButton.titleLabel!.font = UIFont(name: positiveButton.titleLabel!.font.fontName, size: 16)
+        positiveButton.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
+        positiveButton.sizeToFit()
+        positiveButton.addTarget(self, action: #selector(LLDialog.disappear), forControlEvents: .TouchUpInside)
         
         addSubview(titleLabel)
         addSubview(contentLabel)
-        addSubview(noButton)
-        addSubview(yesButton)
+        addSubview(negativeButton)
+        addSubview(positiveButton)
     }
     
     /// Place all controls to correct position.
-    private func placeControls() {
+    @objc private func placeControls() {
         
         let frame = UIScreen.mainScreen().bounds.size
         let width = frame.width * (7 / 9)
@@ -128,39 +139,58 @@ class LLDialog: UIView {
         self.frame = CGRect(origin: viewPoint, size: viewSize)
         self.backgroundColor = UIColor.whiteColor()
         
-        let yesButtonW = yesButton.frame.width
-        let yesButtonH = CGFloat(36)
-        let yesButtonX = CGFloat(CGFloat(viewWidth - 8) - yesButtonW)
-        let yesButtonY = CGFloat(viewHeight - 8 - 36)
-        yesButton.frame = CGRect(x: yesButtonX, y: yesButtonY, width: yesButtonW, height: yesButtonH)
+        let positiveButtonW = positiveButton.frame.width
+        let positiveButtonH = CGFloat(36)
+        let positiveButtonX = CGFloat(CGFloat(viewWidth - 8) - positiveButtonW)
+        let positiveButtonY = CGFloat(viewHeight - 8 - 36)
+        positiveButton.frame = CGRect(x: positiveButtonX, y: positiveButtonY, width: positiveButtonW, height: positiveButtonH)
         
-        let noButtonW = noButton.frame.width
-        let noButtonH = CGFloat(36)
-        let noButtonX = CGFloat(CGFloat(yesButtonX - 8) - noButtonW)
-        let noButtonY = CGFloat(viewHeight - 8 - 36)
-        noButton.frame = CGRect(x: noButtonX, y: noButtonY, width: noButtonW, height: noButtonH)
+        let negativeButtonW = negativeButton.frame.width
+        let negativeButtonH = CGFloat(36)
+        let negativeButtonX = CGFloat(CGFloat(positiveButtonX - 8) - negativeButtonW)
+        let negativeButtonY = CGFloat(viewHeight - 8 - 36)
+        negativeButton.frame = CGRect(x: negativeButtonX, y: negativeButtonY, width: negativeButtonW, height: negativeButtonH)
     }
     
     // MARK: Button actions
     
-    /// Function about configuring yesButton
-    func setYesButton(target: AnyObject!, title: String, action: String) {
-        
-        yesText = title
-        yesButton.addTarget(target, action: Selector(action), forControlEvents: .TouchUpInside)
+    /**
+     Function about configuring positiveButton
+     
+     - parameters:
+     - title: Title of positive button
+     - target: The target object—that is, the object whose action method is called. Set to be nil by default, which means UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
+     - action: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
+     */
+    func setPositiveButton(title title: String, target: AnyObject? = nil,  action arg: Selector? = nil){
+        if !title.isBlank{
+            positiveText = title
+        }
+        if let action = arg{
+            positiveButton.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        }
     }
     
-    /// Function about configuring noButton
-    func setNoButton(target: AnyObject!, title: String, action: String) {
-        
-        noText = title
-        noButton.addTarget(target, action: Selector(action), forControlEvents: .TouchUpInside)
+    
+    /**
+     Function about configuring negativeButton
+     
+     - parameters:
+     - title: Title of negative button
+     - target: The target object—that is, the object whose action method is called. Set to be nil by default, which means UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
+     - action: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
+     */
+    func setNegativeButton(title title: String? = nil, target: AnyObject? = nil, action arg: Selector? = nil){
+        negativeText = title
+        if let action = arg{
+            negativeButton.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        }
     }
     
-    /// Disapper the view when tapped button
-    @objc private func disapper() {
+    /// Disapper the view when tapped button, remove observer
+    @objc private func disappear() {
         
-        func delay(delay:Double, closure:()->()) {
+        func delay(delay:Double, closure: ()->()) {
             dispatch_after(
                 dispatch_time(
                     DISPATCH_TIME_NOW,
@@ -169,14 +199,24 @@ class LLDialog: UIView {
                 dispatch_get_main_queue(), closure)
         }
         
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animateWithDuration(0.3) {
             self.alpha = 0.0
             self.cover.alpha = 0.0
         }
         
-        delay(0.3) { () -> () in
+        delay(0.3) {
             self.cover.removeFromSuperview()
             self.removeFromSuperview()
+        }
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
+}
+
+extension String {
+    var isBlank: Bool {
+        get {
+            let trimmed = stringByTrimmingCharactersInSet(.whitespaceCharacterSet())
+            return trimmed.isEmpty
         }
     }
 }

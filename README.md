@@ -14,25 +14,23 @@ You can see a sample example by downloading this project.
 
 ```
 let dialog = LLDialog()
-  
-// Set title.
+
+// Set title. (Not required)        
 dialog.title = "Use Google's location service?"
+        
+// Set message. (Not required)
+dialog.message = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
+        
+// Set the buttons.
+// Title for positive button is required. If set it to be a "blank" string, it will automatically change to “OK”
+dialog.setPositiveButton(title: "AGREE", target: self, action: #selector(<#tappedPositiveButton#>))
+dialog.setNegativeButton(title: "DISAGREE", target: self,  action: #selector(<#tappedNegativeButton#>))
 
-// Set content.
-dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
-
-// Set the buttons
-dialog.setYesButton(self, title: "AGREE", action: "FUNCTION_NAME")
-dialog.setNoButton(self, title: "DISAGREE", action: "FUNCTION_NAME")
-
-// Don't forget this line.
-dialog.refreshUI()
-
-// At last, add it to your view.
-self.view.addSubview(dialog)
+// At last, show the dialog.       
+dialog.show()
 ```
 
-Except title, content and yes/no button, DO NOT set other attributes.
+**DO NOT** set other attributes.
 
 ## TO DO
 * The animation after tapping the button.

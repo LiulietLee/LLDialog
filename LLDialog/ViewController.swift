@@ -12,16 +12,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    @objc private func tappedYesButton() {
+    @objc private func tappedPositiveButton() {
         
         label.text = "Accepted"
     }
     
-    @objc private func tappedNoButton() {
+    @objc private func tappedNegativeButton() {
         
         label.text = "Did not accept"
     }
@@ -32,15 +28,13 @@ class ViewController: UIViewController {
         
         dialog.title = "Use Google's location service?"
         
-        dialog.content = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
+        dialog.message = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
-        dialog.setYesButton(self, title: "AGREE", action: "tappedYesButton")
+        dialog.setPositiveButton(title: "AGREE", target: self, action: #selector(tappedPositiveButton))
+        dialog.setNegativeButton(title: "DISAGREE", target: self,  action: #selector(tappedNegativeButton))
         
-        dialog.setNoButton(self, title: "DISAGREE", action: "tappedNoButton")
+        dialog.show()
         
-        dialog.refreshUI()
-        
-        self.view.addSubview(dialog)
     }
 }
 
