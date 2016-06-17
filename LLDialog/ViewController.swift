@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         
         dialog.message = "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
         
-        dialog.setPositiveButton(title: "AGREE", target: self, action: #selector(tappedPositiveButton))
-        dialog.setNegativeButton(title: "DISAGREE", target: self,  action: #selector(tappedNegativeButton))
+        dialog.setPositiveButton(withTitle: "AGREE", target: self, action: #selector(tappedPositiveButton))
+        dialog.setNegativeButton(withTitle: "DISAGREE", target: self,  action: #selector(tappedNegativeButton))
         
         dialog.show()
         
