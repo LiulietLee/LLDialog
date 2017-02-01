@@ -222,10 +222,10 @@ class LLDialog: UIView {
             self.cover.alpha = 0.0
         }
         
-        UIView.animate(withDuration: 0.0, delay: 0.3, options: .curveEaseInOut, animations: {
+        _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
             self.cover.removeFromSuperview()
             self.removeFromSuperview()
-            }, completion: nil)
+        }
         
         NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
     }
