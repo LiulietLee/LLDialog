@@ -3,7 +3,7 @@
 //  LLDialog
 //
 //  Created by Liuliet.Lee on 22/1/2016.
-//  Copyright © 2016 Liuliet.Lee. All rights reserved.
+//  Copyright © 2016-2017 Liuliet.Lee. All rights reserved.
 //
 
 import UIKit
@@ -50,9 +50,8 @@ open class LLDialog: UIView {
      */
     @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     open func show() {
-        #if !NS_EXTENSION_UNAVAILABLE
-            show(in: UIApplication.shared.keyWindow)
-        #endif
+        let keyWindow = UIApplication.value(forKeyPath: #keyPath(UIApplication.shared.keyWindow))
+        show(in: keyWindow as? UIWindow)
     }
 
     /**
@@ -219,7 +218,7 @@ open class LLDialog: UIView {
     }
 
     /// Disapper the view when tapped button, remove observer
-    public func dismiss() {
+    @objc public func dismiss() {
         NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
         UIView.animate(
             withDuration: 0.3,
