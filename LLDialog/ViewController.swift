@@ -3,7 +3,7 @@
 //  LLDialog
 //
 //  Created by Liuliet.Lee on 22/1/2016.
-//  Copyright © 2016 Liuliet.Lee. All rights reserved.
+//  Copyright © 2016-2017 Liuliet.Lee. All rights reserved.
 //
 
 import UIKit
