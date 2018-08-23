@@ -44,6 +44,30 @@ open class LLDialog: UIView {
     }
 
     // MARK: Configure controls
+    
+    /**
+     Function about setting title
+     
+     - parameters:
+     - title: Title of dialog
+     */
+    @discardableResult
+    open func set(title: String) -> LLDialog {
+        self.title = title
+        return self
+    }
+    
+    /**
+     Function about setting message
+     
+     - parameters:
+     - message: message of dialog
+     */
+    @discardableResult
+    open func set(message: String) -> LLDialog {
+        self.message = message
+        return self
+    }
 
     /**
      Refresh all controls, show dialog in application's key window, add observer to handle rotation
@@ -193,13 +217,15 @@ open class LLDialog: UIView {
      - target: The target object—that is, the object whose action method is called. Set to be nil by default, which means UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
      - action: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
      */
-    open func setPositiveButton(withTitle title: String, target: Any? = nil,  action possibleFunction: Selector? = nil) {
+    @discardableResult
+    open func setPositiveButton(withTitle title: String, target: Any? = nil,  action possibleFunction: Selector? = nil) -> LLDialog {
         if !title.isBlank {
             positiveText = title
         }
         if let function = possibleFunction {
             positiveButton.addTarget(target, action: function, for: .touchUpInside)
         }
+        return self
     }
 
 
@@ -210,11 +236,13 @@ open class LLDialog: UIView {
      - parameter target:   The target object—that is, the object whose action method is called. Set to be nil by default, which means UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
      - parameter function: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
      */
-    open func setNegativeButton(withTitle title: String? = nil, target: Any? = nil, action possibleFunction: Selector? = nil) {
+    @discardableResult
+    open func setNegativeButton(withTitle title: String? = nil, target: Any? = nil, action possibleFunction: Selector? = nil) -> LLDialog {
         negativeText = title
         if let function = possibleFunction {
             negativeButton.addTarget(target, action: function, for: .touchUpInside)
         }
+        return self
     }
 
     /// Disapper the view when tapped button, remove observer
