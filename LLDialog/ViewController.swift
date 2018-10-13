@@ -22,19 +22,33 @@ class ViewController: UIViewController {
 
     @IBAction func buttonTapped() {
         LLDialog()
-            // Set title. (Not required)
+            // Set title. (Optional, but recommended)
             .set(title: "Use Google's location service?")
-        
-            // Set message. (Not required)
+
+            // Set message. (Optional, but recommended)
             .set(message: "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.")
             
             // Set the buttons.
-            // Title for positive button is required. If set it to be a "blank" string, it will automatically change to "OK"
             .setPositiveButton(withTitle: "AGREE", target: self, action: #selector(tappedPositiveButton))
             .setNegativeButton(withTitle: "DISAGREE", target: self, action: #selector(tappedNegativeButton))
             
             // At last, show the dialog.
             .show()
+    }
+
+    func demonstrateInit() {
+        LLDialog.show(LLDialog.init(
+            title: "Unapplied method reference",
+            message: "It produces better indentation. Maybe not after SE-0042.",
+            positiveButton: (
+                title: "", // Title for positive button is required. "Blank" is the same as "OK".
+                onTouchUpInside: (target: self,
+                                  action: #selector(tappedPositiveButton))),
+            negativeButton: (
+                title: "What?",
+                onTouchUpInside: (target: self,
+                                  action: #selector(tappedNegativeButton)))
+        ))(/*in: UIApplication.shared.keyWindow*/)
     }
 }
 

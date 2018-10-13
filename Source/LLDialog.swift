@@ -13,9 +13,9 @@ open class LLDialog: UIView {
     // MARK: Properties
 
     /// Title of LLDialog
-    open lazy var title: String? = "Title"
+    open private(set) var title: String?
     /// Message of LLDialog
-    open lazy var message: String? = "This is the message."
+    open private(set) var message: String?
 
     private lazy var negativeButton = UIButton()
     private lazy var positiveButton = UIButton()
@@ -45,33 +45,27 @@ open class LLDialog: UIView {
 
     // MARK: Configure controls
 
-    /**
-     Function about setting title
-     
-     - parameters:
-     - title: Title of dialog
-     */
+    /// Set the title of this dialog.
+    ///
+    /// - Parameter title: title to display in this dialog.
+    /// - Returns: `self`
     @discardableResult
-    open func set(title: String) -> LLDialog {
+    open func set(title: String?) -> LLDialog {
         self.title = title
         return self
     }
 
-    /**
-     Function about setting message
-     
-     - parameters:
-     - message: message of dialog
-     */
+    /// Set the message of this dialog.
+    ///
+    /// - Parameter message: message to display in this dialog.
+    /// - Returns: `self`
     @discardableResult
-    open func set(message: String) -> LLDialog {
+    open func set(message: String?) -> LLDialog {
         self.message = message
         return self
     }
 
-    /**
-     Refresh all controls, show dialog in application's key window, add observer to handle rotation
-     */
+    /// Refresh all controls, show dialog in application's key window, add observer to handle rotation
     @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     @available(watchOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     @available(tvOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
@@ -215,12 +209,12 @@ open class LLDialog: UIView {
      Function about configuring positiveButton
 
      - parameters:
-     - title: Title of positive button
+     - title: Title of positive button. Blank is the same as "OK".
      - target: The target object—that is, the object whose action method is called. Set to be nil by default, which means UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
      - action: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
      */
     @discardableResult
-    open func setPositiveButton(withTitle title: String, target: Any? = nil,  action possibleFunction: Selector? = nil) -> LLDialog {
+    open func setPositiveButton(withTitle title: String = "", target: Any? = nil,  action possibleFunction: Selector? = nil) -> LLDialog {
         if !title.isBlank {
             positiveText = title
         }
@@ -261,7 +255,37 @@ open class LLDialog: UIView {
                 self?.removeFromSuperview()
         })
     }
+
+    /// Initialize an LLDialog with all cutomizable parameters.
+    ///
+    /// - Parameters:
+    ///   - title: title
+    ///   - message: message
+    ///   - positiveButton: title and action for positive button
+    ///   - negativeButton: title and action for negative button
+    convenience init(title: String?, message: String?,
+                     positiveButton: Button, negativeButton: Button? = nil) {
+        self.init()
+        set(title: title)
+        set(message: message)
+        setPositiveButton(withTitle: positiveButton.title ?? "",
+                          target: positiveButton.onTouchUpInside?.target,
+                          action: positiveButton.onTouchUpInside?.action)
+        setNegativeButton(withTitle: negativeButton?.title,
+                          target: negativeButton?.onTouchUpInside?.target,
+                          action: negativeButton?.onTouchUpInside?.action)
+    }
 }
+
+/**
+ A button on LLDialog.
+
+ - title: text on the button
+ - onTouchUpInside: `nil` means the default action of `LLDialog.dismiss` is used.
+     - target: The target object—that is, the object whose action method is called. If you specify `nil`, UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
+     - action: A selector identifying the action method to be called. You may specify a selector whose signature matches any of the signatures in UIControl.
+ */
+public typealias Button = (title: String?, onTouchUpInside: (target: Any?, action: Selector)?)
 
 extension String {
     /// To check if the string contains characters other than white space and \n
