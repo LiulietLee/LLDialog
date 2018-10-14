@@ -13,9 +13,9 @@ open class LLDialog: UIView {
     // MARK: Properties
 
     /// Title of LLDialog
-    open lazy var title: String? = "Title"
+    open private(set) var title: String?
     /// Message of LLDialog
-    open lazy var message: String? = "This is the message."
+    open private(set) var message: String?
 
     private lazy var negativeButton = UIButton()
     private lazy var positiveButton = UIButton()
@@ -44,35 +44,33 @@ open class LLDialog: UIView {
     }
 
     // MARK: Configure controls
-    
-    /**
-     Function about setting title
-     
-     - parameters:
-     - title: Title of dialog
-     */
+
+    /// Set the title of this dialog.
+    ///
+    /// - Parameter title: title to display in this dialog.
+    /// - Returns: `self`
     @discardableResult
-    open func set(title: String) -> LLDialog {
+    open func set(title: String?) -> LLDialog {
         self.title = title
         return self
     }
-    
-    /**
-     Function about setting message
-     
-     - parameters:
-     - message: message of dialog
-     */
+
+    /// Set the message of this dialog.
+    ///
+    /// - Parameter message: message to display in this dialog.
+    /// - Returns: `self`
     @discardableResult
-    open func set(message: String) -> LLDialog {
+    open func set(message: String?) -> LLDialog {
         self.message = message
         return self
     }
 
-    /**
-     Refresh all controls, show dialog in application's key window, add observer to handle rotation
-     */
+    /// Refresh all controls, show dialog in application's key window, add observer to handle rotation
     @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(watchOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(tvOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(iOSMacApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(OSXApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     open func show() {
         let keyWindow = UIApplication.value(forKeyPath: #keyPath(UIApplication.shared.keyWindow))
         show(in: keyWindow as? UIWindow)
@@ -89,7 +87,7 @@ open class LLDialog: UIView {
         cover.alpha = 0.0
         parent.addSubview(cover)
         parent.addSubview(self)
-        superview!.bringSubview(toFront: self)
+        superview!.bringSubviewToFront(self)
 
         addControls()
         placeControls()
@@ -97,7 +95,7 @@ open class LLDialog: UIView {
         UIView.animate(withDuration: 0.3) { [weak self] in self?.cover.alpha = 0.6 }
         UIView.animate(withDuration: 0.3) { [weak self] in self?.alpha = 1.0 }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(LLDialog.placeControls), name: .UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(placeControls), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     /**
@@ -131,14 +129,13 @@ open class LLDialog: UIView {
         button.setTitle(title, for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.07, green: 0.58, blue: 0.96, alpha: 1), for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(16)
-        button.contentEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         button.sizeToFit()
-        button.addTarget(self, action: #selector(LLDialog.dismiss), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
     }
 
     /// Configure controls and add them to the view
     private func addControls() {
-
         configure(&titleLabel, withText: title, font: "HelveticaNeue-Medium", fontSize: 18)
         configure(&contentLabel, withText: message, fontSize: 16, textColor: #colorLiteral(red: 0.49, green: 0.49, blue: 0.49, alpha: 1))
 
@@ -179,7 +176,6 @@ open class LLDialog: UIView {
 
     /// Place all controls to correct position.
     @objc private func placeControls() {
-
         let width = superViewSize.width * (7 / 9)
 
         place(label: &titleLabel, width: width, y: 24)
@@ -213,12 +209,12 @@ open class LLDialog: UIView {
      Function about configuring positiveButton
 
      - parameters:
-     - title: Title of positive button
+     - title: Title of positive button. Blank is the same as "OK".
      - target: The target object—that is, the object whose action method is called. Set to be nil by default, which means UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
      - action: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
      */
     @discardableResult
-    open func setPositiveButton(withTitle title: String, target: Any? = nil,  action possibleFunction: Selector? = nil) -> LLDialog {
+    open func setPositiveButton(withTitle title: String = "", target: Any? = nil,  action possibleFunction: Selector? = nil) -> LLDialog {
         if !title.isBlank {
             positiveText = title
         }
@@ -247,7 +243,7 @@ open class LLDialog: UIView {
 
     /// Disapper the view when tapped button, remove observer
     @objc public func dismiss() {
-        NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
         UIView.animate(
             withDuration: 0.3,
             animations: { [weak self] in
@@ -259,7 +255,37 @@ open class LLDialog: UIView {
                 self?.removeFromSuperview()
         })
     }
+
+    /// Initialize an LLDialog with all cutomizable parameters.
+    ///
+    /// - Parameters:
+    ///   - title: title
+    ///   - message: message
+    ///   - positiveButton: title and action for positive button
+    ///   - negativeButton: title and action for negative button
+    convenience init(title: String?, message: String?,
+                     positiveButton: Button, negativeButton: Button? = nil) {
+        self.init()
+        set(title: title)
+        set(message: message)
+        setPositiveButton(withTitle: positiveButton.title ?? "",
+                          target: positiveButton.onTouchUpInside?.target,
+                          action: positiveButton.onTouchUpInside?.action)
+        setNegativeButton(withTitle: negativeButton?.title,
+                          target: negativeButton?.onTouchUpInside?.target,
+                          action: negativeButton?.onTouchUpInside?.action)
+    }
 }
+
+/**
+ A button on LLDialog.
+
+ - title: text on the button
+ - onTouchUpInside: `nil` means the default action of `LLDialog.dismiss` is used.
+     - target: The target object—that is, the object whose action method is called. If you specify `nil`, UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
+     - action: A selector identifying the action method to be called. You may specify a selector whose signature matches any of the signatures in UIControl.
+ */
+public typealias Button = (title: String?, onTouchUpInside: (target: Any?, action: Selector)?)
 
 extension String {
     /// To check if the string contains characters other than white space and \n
