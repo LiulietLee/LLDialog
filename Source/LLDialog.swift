@@ -72,8 +72,8 @@ open class LLDialog: UIView {
     @available(iOSMacApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     @available(OSXApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     open func show() {
-        let keyWindow = UIApplication.value(forKeyPath: #keyPath(UIApplication.shared.keyWindow))
-        show(in: keyWindow as? UIWindow)
+        let keyWindow = UIApplication.shared.keyWindow
+        show(in: keyWindow)
     }
 
     /**
