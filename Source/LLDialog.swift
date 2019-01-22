@@ -24,6 +24,7 @@ open class LLDialog: UIView {
     private lazy var cover: UIView = {
         let cover = UIView()
         cover.backgroundColor = .black
+        cover.translatesAutoresizingMaskIntoConstraints = false
         return cover
     }()
     private var negativeText: String?
@@ -86,6 +87,13 @@ open class LLDialog: UIView {
         alpha = 0.0
         cover.alpha = 0.0
         parent.addSubview(cover)
+        let constraints = [
+            cover.constraint(.centerX, equalTo: parent),
+            cover.constraint(.centerY, equalTo: parent),
+            cover.constraint(.width, equalTo: parent),
+            cover.constraint(.height, equalTo: parent)
+        ]
+        parent.addConstraints(constraints)
         parent.addSubview(self)
         superview!.bringSubviewToFront(self)
 
@@ -199,8 +207,6 @@ open class LLDialog: UIView {
         let negativeButtonWidth = negativeButton.frame.width
         place(button: &positiveButton, x: positiveButtonX, y: buttonY)
         place(button: &negativeButton, x: positiveButtonX - 8 - negativeButtonWidth, y: buttonY)
-
-        cover.frame.size = superViewSize
     }
 
     // MARK: Button actions
@@ -214,7 +220,7 @@ open class LLDialog: UIView {
      - action: A selector identifying the action method to be called. Set to be nil by dafault, which means after taping the button, the LLDialog view disappears.
      */
     @discardableResult
-    open func setPositiveButton(withTitle title: String = "", target: Any? = nil,  action possibleFunction: Selector? = nil) -> LLDialog {
+    open func setPositiveButton(withTitle title: String = "", target: Any? = nil, action possibleFunction: Selector? = nil) -> LLDialog {
         if !title.isBlank {
             positiveText = title
         }
@@ -223,7 +229,6 @@ open class LLDialog: UIView {
         }
         return self
     }
-
 
     /**
      Function about configuring negativeButton
@@ -291,5 +296,17 @@ extension String {
     /// To check if the string contains characters other than white space and \n
     fileprivate var isBlank: Bool {
         return trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+}
+
+extension UIView {
+    func constraint(_ attribute: NSLayoutConstraint.Attribute,
+                    equalTo anotherView: UIView)
+        -> NSLayoutConstraint {
+            return NSLayoutConstraint(
+                item: self, attribute: attribute, relatedBy: .equal,
+                toItem: anotherView, attribute: attribute,
+                multiplier: 1, constant: 0
+            )
     }
 }
