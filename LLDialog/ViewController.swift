@@ -40,11 +40,11 @@ class ViewController: UIViewController {
         LLDialog.show(LLDialog.init(
             title: "Unapplied method reference",
             message: "It produces better indentation. Maybe not after SE-0042.",
-            positiveButton: (
+            positiveButton: .init(
                 title: "", // Title for positive button is required. "Blank" is the same as "OK".
                 onTouchUpInside: (target: self,
                                   action: #selector(tappedPositiveButton))),
-            negativeButton: (
+            negativeButton: .init(
                 title: "What?",
                 onTouchUpInside: (target: self,
                                   action: #selector(tappedNegativeButton)))

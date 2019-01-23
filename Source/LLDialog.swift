@@ -10,7 +10,7 @@ import UIKit
 
 open class LLDialog: UIView {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     /// Title of LLDialog
     open private(set) var title: String?
@@ -30,7 +30,7 @@ open class LLDialog: UIView {
     private var negativeText: String?
     private lazy var positiveText = "OK"
 
-    // MARK: Auxiliaries
+    // MARK: - Auxiliaries
 
     private var superViewSize: CGSize! {
         return superview?.bounds.size
@@ -44,7 +44,7 @@ open class LLDialog: UIView {
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 2).cgPath
     }
 
-    // MARK: Configure controls
+    // MARK: - Configure controls
 
     /// Set the title of this dialog.
     ///
@@ -209,7 +209,7 @@ open class LLDialog: UIView {
         place(button: &negativeButton, x: positiveButtonX - 8 - negativeButtonWidth, y: buttonY)
     }
 
-    // MARK: Button actions
+    // MARK: - Button actions
 
     /**
      Function about configuring positiveButton
@@ -260,7 +260,11 @@ open class LLDialog: UIView {
                 self?.removeFromSuperview()
         })
     }
+}
 
+// MARK: - Convenience Init
+
+extension LLDialog {
     /// Initialize an LLDialog with all cutomizable parameters.
     ///
     /// - Parameters:
@@ -268,8 +272,10 @@ open class LLDialog: UIView {
     ///   - message: message
     ///   - positiveButton: title and action for positive button
     ///   - negativeButton: title and action for negative button
-    convenience init(title: String?, message: String?,
-                     positiveButton: Button, negativeButton: Button? = nil) {
+    public convenience init(title: String?,
+                            message: String?,
+                            positiveButton: Button,
+                            negativeButton: Button? = nil) {
         self.init()
         set(title: title)
         set(message: message)
@@ -280,17 +286,29 @@ open class LLDialog: UIView {
                           target: negativeButton?.onTouchUpInside?.target,
                           action: negativeButton?.onTouchUpInside?.action)
     }
+
+    /// - target: The target object—that is, the object whose action method is called. If you specify `nil`, UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
+    /// - action: A selector identifying the action method to be called. You may specify a selector whose signature matches any of the signatures in UIControl.
+    public typealias TargetAction = (target: Any?, action: Selector)
+    
+    /// A button on LLDialog.
+    public struct Button {
+        fileprivate let title: String?
+        fileprivate let onTouchUpInside: TargetAction?
+        
+        /// Constructs a button on LLDialog.
+        ///
+        /// - Parameters:
+        ///   - title: text on the button. Defaults to "OK" for positive button.
+        ///   - onTouchUpInside: `nil` is the same as `dismiss`.
+        public init(title: String? = nil, onTouchUpInside: TargetAction? = nil) {
+            self.title = title
+            self.onTouchUpInside = onTouchUpInside
+        }
+    }
 }
 
-/**
- A button on LLDialog.
-
- - title: text on the button
- - onTouchUpInside: `nil` means the default action of `LLDialog.dismiss` is used.
-     - target: The target object—that is, the object whose action method is called. If you specify `nil`, UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
-     - action: A selector identifying the action method to be called. You may specify a selector whose signature matches any of the signatures in UIControl.
- */
-public typealias Button = (title: String?, onTouchUpInside: (target: Any?, action: Selector)?)
+// MARK: - Other Helpers
 
 extension String {
     /// To check if the string contains characters other than white space and \n
@@ -300,8 +318,8 @@ extension String {
 }
 
 extension UIView {
-    func constraint(_ attribute: NSLayoutConstraint.Attribute,
-                    equalTo anotherView: UIView)
+    fileprivate func constraint(_ attribute: NSLayoutConstraint.Attribute,
+                                equalTo anotherView: UIView)
         -> NSLayoutConstraint {
             return NSLayoutConstraint(
                 item: self, attribute: attribute, relatedBy: .equal,

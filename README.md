@@ -4,7 +4,12 @@ Material design dialog for iOS written in Swift.
 ![](https://cloud.githubusercontent.com/assets/9763162/12781499/b909ede8-caaf-11e5-8dac-d5fce055aec0.png)
 
 ## Installation
-Just move [Source/LLDialog.swift](Source/LLDialog.swift) to your project.
+
+```
+pod 'LLDialog', :git => 'https://github.com/LiulietLee/LLDialog.git'
+```
+
+or just move [Source/LLDialog.swift](Source/LLDialog.swift) to your project.
 
 ## Usage
 You can see a simple example by downloading this project.
@@ -35,11 +40,11 @@ LLDialog()
 LLDialog(
     title: "Unapplied method reference",
     message: "It produces better indentation. Maybe not after SE-0042.",
-    positiveButton: (
+    positiveButton: .init(
         title: "", // Title for positive button is required. Blank is the same as "OK".
         onTouchUpInside: (target: self,
                           action: #selector(<#tappedPositiveButton#>))),
-    negativeButton: (
+    negativeButton: .init(
         title: "What?",
         onTouchUpInside: (target: self,
                           action: #selector(<#tappedNegativeButton#>)))
@@ -47,4 +52,5 @@ LLDialog(
 ```
 
 ## TO DO
-* The animation after tapping the button.
+
+- [ ] The animation after tapping the button.

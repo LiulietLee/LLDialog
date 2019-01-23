@@ -26,6 +26,7 @@
 		52A1795E1EEB3C0400F14BF3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		52A1795F1EEB3C0A00F14BF3 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		52CBD64A1CAC752100A2A4ED /* LLDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLDialog.swift; path = Source/LLDialog.swift; sourceTree = SOURCE_ROOT; };
+		52EECFEC21F7DD6600FC72D1 /* LLDialog.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = LLDialog.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 			isa = PBXGroup;
 			children = (
 				52A1795E1EEB3C0400F14BF3 /* README.md */,
+				52EECFEC21F7DD6600FC72D1 /* LLDialog.podspec */,
 				52A1795F1EEB3C0A00F14BF3 /* LICENSE.txt */,
 				4FD12E6D1C525A1C00224176 /* LLDialog */,
 				4FD12E6C1C525A1C00224176 /* Products */,
@@ -97,7 +99,6 @@
 				4FD12E671C525A1C00224176 /* Sources */,
 				4FD12E681C525A1C00224176 /* Frameworks */,
 				4FD12E691C525A1C00224176 /* Resources */,
-				52CBD64C1CAC770500A2A4ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -154,22 +155,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		52CBD64C1CAC770500A2A4ED /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4FD12E671C525A1C00224176 /* Sources */ = {
@@ -316,7 +301,7 @@
 				INFOPLIST_FILE = LLDialog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollo.LLDialog;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPMENT_TEAM).LLDialog";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -335,7 +320,7 @@
 				INFOPLIST_FILE = LLDialog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollo.LLDialog;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPMENT_TEAM).LLDialog";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
