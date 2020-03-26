@@ -12,7 +12,7 @@ let package = Package(
             name: "LLDialog",
             targets: ["LLDialog"]),
         .library(
-            name: "LLDialogDYLB",
+            name: "LLDialogDYLIB",
             type: .dynamic,
             targets: ["LLDialog"]),
     ],
