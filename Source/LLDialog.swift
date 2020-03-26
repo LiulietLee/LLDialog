@@ -78,7 +78,15 @@ open class LLDialog: UIView {
     @available(OSXApplicationExtension, unavailable,
     message: "This method is NS_EXTENSION_UNAVAILABLE.")
     open func show() {
-        let keyWindow = UIApplication.shared.keyWindow
+        let keyWindow: UIView?
+        if #available(iOS 13.0, macCatalyst 13.0, tvOS 13.0, *) {
+            keyWindow = UIApplication.shared.connectedScenes.lazy
+                .compactMap { $0 as? UIWindowScene }
+                .flatMap { $0.windows }
+                .first(where: { $0.isKeyWindow })
+        } else {
+            keyWindow = UIApplication.shared.keyWindow
+        }
         show(in: keyWindow)
     }
 
@@ -152,6 +160,9 @@ open class LLDialog: UIView {
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         button.sizeToFit()
         button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        if #available(iOS 13.4, macCatalyst 13.4, *) {
+            button.isPointerInteractionEnabled = true
+        }
     }
 
     /// Configure controls and add them to the view

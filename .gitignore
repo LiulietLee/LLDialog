@@ -10,3 +10,5 @@
 !default.perspectivev3
 xcuserdata/
 project.xcworkspace/
+.build/
+.swiftpm/
