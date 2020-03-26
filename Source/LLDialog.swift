@@ -67,11 +67,16 @@ open class LLDialog: UIView {
     }
 
     /// Refresh all controls, show dialog in application's key window, add observer to handle rotation
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
-    @available(watchOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
-    @available(tvOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
-    @available(iOSMacApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
-    @available(OSXApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(iOSApplicationExtension, unavailable,
+    message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(watchOSApplicationExtension, unavailable,
+    message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(tvOSApplicationExtension, unavailable,
+    message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(macCatalystApplicationExtension, unavailable,
+    message: "This method is NS_EXTENSION_UNAVAILABLE.")
+    @available(OSXApplicationExtension, unavailable,
+    message: "This method is NS_EXTENSION_UNAVAILABLE.")
     open func show() {
         let keyWindow = UIApplication.shared.keyWindow
         show(in: keyWindow)
@@ -103,7 +108,10 @@ open class LLDialog: UIView {
         UIView.animate(withDuration: 0.3) { [weak self] in self?.cover.alpha = 0.6 }
         UIView.animate(withDuration: 0.3) { [weak self] in self?.alpha = 1.0 }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(placeControls), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(placeControls),
+                         name: UIDevice.orientationDidChangeNotification,
+                         object: nil)
     }
 
     /**
@@ -115,7 +123,11 @@ open class LLDialog: UIView {
      - parameter size:          Size of text
      - parameter preferedColor: Prefered color. If nil, will use the default color
      */
-    private func configure(_ label: inout UILabel, withText text: String? = nil, font preferedFont: String? = nil, fontSize size: CGFloat, textColor preferedColor: UIColor? = nil) {
+    private func configure(
+        _ label: inout UILabel, withText text: String? = nil,
+        font preferedFont: String? = nil, fontSize size: CGFloat,
+        textColor preferedColor: UIColor? = nil
+    ) {
         label.text = text
         if let font = preferedFont {
             label.font = UIFont(name: font, size: size)
@@ -145,8 +157,11 @@ open class LLDialog: UIView {
     /// Configure controls and add them to the view
     private func addControls() {
         configure(&titleLabel, withText: title, font: "HelveticaNeue-Medium", fontSize: 18)
-        configure(&contentLabel, withText: message, fontSize: 16, textColor: #colorLiteral(red: 0.49, green: 0.49, blue: 0.49, alpha: 1))
-
+        if #available(iOS 13.0, *) {
+            configure(&contentLabel, withText: message, fontSize: 16, textColor: .secondaryLabel)
+        } else {
+            configure(&contentLabel, withText: message, fontSize: 16, textColor: #colorLiteral(red: 0.49, green: 0.49, blue: 0.49, alpha: 1))
+        }
         configure(&negativeButton, withTitle: negativeText)
         configure(&positiveButton, withTitle: positiveText)
 
@@ -199,7 +214,11 @@ open class LLDialog: UIView {
         let superViewHeight = superViewSize.height
         let viewPoint = CGPoint(x: (1 / 9) * superViewWidth, y: (superViewHeight - viewHeight) / 2)
         frame = CGRect(origin: viewPoint, size: viewSize)
-        backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            backgroundColor = .secondarySystemBackground
+        } else {
+            backgroundColor = .white
+        }
 
         let buttonY = viewHeight - 8 - 36
         let positiveButtonWidth = positiveButton.frame.width
